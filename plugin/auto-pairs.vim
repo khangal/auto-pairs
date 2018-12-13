@@ -1,5 +1,5 @@
 " Insert or delete brackets, parens, quotes in pairs.
-" Maintainer:	JiangMiao <jiangfriend@gmail.com>
+" Maintainer: JiangMiao <jiangfriend@gmail.com>
 " Contributor: camthompson
 " Last Change:  2017-06-17
 " Version: 1.3.3
@@ -178,6 +178,10 @@ function! AutoPairsInsert(key)
   if a:key == "'" && prev_char =~ '\v\w'
     return a:key
   end
+
+  if current_char =~ '\v\S' && current_char =~ '[^)}\]]'
+    return a:key
+  endif
 
   " support for ''' ``` and """
   if open == close
